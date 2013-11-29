@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="de.cadenas.cordova.RenderEngine"
+    version="1.0.0">
+    <name>RenderEngine</name>
+    <description>Cordova Render engine plugin</description>
+    
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    
+    <js-module src="www/RenderEngineBase.js" name="RenderEngineBase">
+    </js-module>
+    
+    <js-module src="www/RenderEngineImpl.js" name="RenderEngineImpl">
+    	<clobbers target="navigator.RenderEngineImpl" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="RenderEngine">
+                <param name="ios-package" value="CDVRenderEngineImpl"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVGLKViewControllerBase.h" />
+        <source-file src="src/ios/CDVGLKViewControllerBase.m" />
+        <header-file src="src/ios/CDVRenderEngine.h" />        
+        <source-file src="src/ios/CDVRenderEngine.m" />
+        <header-file src="src/ios/CDVRenderEngineImpl.h" />
+        <source-file src="src/ios/CDVRenderEngineImpl.m" />
+        
+        
+        <framework src="OpenGLES.framework" />
+        <framework src="GLKit.framework" />
+    </platform>
+
+</plugin>
